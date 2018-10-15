@@ -1,0 +1,70 @@
+/* global describe, it */
+
+const assert = require('assert')
+const namespace = require('..')
+
+describe('namespace', () => {
+  it('should be a function', () => {
+    assert.strictEqual(typeof namespace, 'function')
+  })
+
+  it('should return a function', () => {
+    const schema = namespace('http://schema.org/')
+
+    assert.strictEqual(typeof schema, 'function')
+  })
+
+  it('should use the given factory to create Named Nodes', () => {
+    let touched = false
+
+    const factory = { namedNode: () => { touched = true } }
+    const schema = namespace('http://schema.org/', { factory })
+
+    schema('hasPart')
+
+    assert(touched)
+  })
+
+  describe('function call', () => {
+    it('should create a Named Node based on the baseIRI and the given parameter', () => {
+      const schema = namespace('http://schema.org/')
+      const term = schema('hasPart')
+
+      assert.strictEqual(term.termType, 'NamedNode')
+      assert.strictEqual(term.value, 'http://schema.org/hasPart')
+    })
+  })
+
+  describe('tagged template literal', () => {
+    it('should create a Named Node based on the baseIRI and the given template string', () => {
+      const schema = namespace('http://schema.org/')
+      const term = schema`hasPart`
+
+      assert.strictEqual(term.termType, 'NamedNode')
+      assert.strictEqual(term.value, 'http://schema.org/hasPart')
+    })
+  })
+
+  describe('proxy', () => {
+    it('should create a Named Node based on the baseIRI and the property', () => {
+      const schema = namespace('http://schema.org/')
+      const term = schema.hasPart
+
+      assert.strictEqual(term.termType, 'NamedNode')
+      assert.strictEqual(term.value, 'http://schema.org/hasPart')
+    })
+
+    it('should return undefined if the JavaScript engine doesn\'t support Proxy', () => {
+      const ProxyBackup = global.Proxy
+
+      global.Proxy = undefined
+
+      const schema = namespace('http://schema.org/')
+      const term = schema.hasPart
+
+      global.Proxy = ProxyBackup
+
+      assert.strictEqual(typeof term, 'undefined')
+    })
+  })
+})
