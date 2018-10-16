@@ -9,7 +9,7 @@
 ## Usage
 
 The package exports a factory to create builders for [Named Nodes](http://rdf.js.org/#namednode-interface).
-The `baseIRI` given to the factory will be used together with the parameter to the builder to create Named Nodes.
+The `baseIRI` given to the factory will be used together with the parameter given to the builder to create Named Nodes.
 
 ### Factory
 
@@ -18,7 +18,7 @@ The factory must be called with the `baseIRI` as a string:
 const builder = namespace('http://example.org/base-iri#')
 ```
 
-Optional a factory can be defined:
+An optional factory can be defined:
 ```javascript
 const builder = namespace('http://example.org/base-iri#', { factory: customFactory })
 ```
@@ -47,14 +47,14 @@ const namespace = require('@rdfjs/namespace')
 const schema = namespace('http://schema.org/')
 
 const hasPart = schema('hasPart')
-console.log(hasPart.termType)
-console.log(hasPart.value)
+console.log(hasPart.termType) // NamedNode
+console.log(hasPart.value) // http://schema.org/hasPart
 
 const person = schema`Person`
-console.log(person.termType)
-console.log(person.value)
+console.log(person.termType) // NamedNode
+console.log(person.value) // http://schema.org/Person
 
 const comment = schema.Comment
-console.log(comment.termType)
-console.log(comment.value)
+console.log(comment.termType) // NamedNode
+console.log(comment.value) // http://schema.org/Comment
 ```
