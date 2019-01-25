@@ -33,6 +33,22 @@ describe('namespace', () => {
       assert.strictEqual(term.termType, 'NamedNode')
       assert.strictEqual(term.value, 'http://schema.org/hasPart')
     })
+
+    it('should create a Named Node based on the baseIRI with the empty string as parameter', () => {
+      const schema = namespace('http://schema.org/')
+      const term = schema('')
+
+      assert.strictEqual(term.termType, 'NamedNode')
+      assert.strictEqual(term.value, 'http://schema.org/')
+    })
+
+    it('should create a Named Node based on the baseIRI without parameter', () => {
+      const schema = namespace('http://schema.org/')
+      const term = schema()
+
+      assert.strictEqual(term.termType, 'NamedNode')
+      assert.strictEqual(term.value, 'http://schema.org/')
+    })
   })
 
   describe('tagged template literal', () => {
@@ -42,6 +58,14 @@ describe('namespace', () => {
 
       assert.strictEqual(term.termType, 'NamedNode')
       assert.strictEqual(term.value, 'http://schema.org/hasPart')
+    })
+
+    it('should create a Named Node based on the baseIRI and an empty template string', () => {
+      const schema = namespace('http://schema.org/')
+      const term = schema``
+
+      assert.strictEqual(term.termType, 'NamedNode')
+      assert.strictEqual(term.value, 'http://schema.org/')
     })
   })
 

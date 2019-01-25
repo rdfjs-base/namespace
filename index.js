@@ -1,7 +1,7 @@
 const rdf = require('@rdfjs/data-model')
 
 function namespace (baseIRI, { factory = rdf } = {}) {
-  const builder = term => factory.namedNode(`${baseIRI}${term.raw || term}`)
+  const builder = (term = '') => factory.namedNode(`${baseIRI}${term.raw || term}`)
 
   if (!Proxy) {
     return builder
