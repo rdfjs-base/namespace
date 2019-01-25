@@ -57,7 +57,7 @@ describe('namespace', () => {
     it('should return undefined if the JavaScript engine doesn\'t support Proxy', () => {
       const ProxyBackup = global.Proxy
 
-      global.Proxy = undefined
+      delete global.Proxy
 
       const schema = namespace('http://schema.org/')
       const term = schema.hasPart
