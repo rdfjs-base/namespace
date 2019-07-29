@@ -6,7 +6,7 @@ const handler = {
 }
 
 function namespace (baseIRI, { factory = rdf } = {}) {
-  const builder = term => factory.namedNode(`${baseIRI}${term.raw || term}`)
+  const builder = (term = '') => factory.namedNode(`${baseIRI}${term.raw || term}`)
 
   return typeof Proxy === 'undefined' ? builder : new Proxy(builder, handler)
 }
