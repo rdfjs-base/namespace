@@ -1,16 +1,14 @@
 const rdf = require('@rdfjs/data-model')
 
+const handler = {
+  apply: (target, thisArg, args) => target(args[0]),
+  get: (target, property) => target(property)
+}
+
 function namespace (baseIRI, { factory = rdf } = {}) {
   const builder = term => factory.namedNode(`${baseIRI}${term.raw || term}`)
 
-  if (!Proxy) {
-    return builder
-  }
-
-  return new Proxy(() => {}, {
-    apply: (target, thisArg, args) => builder(args[0]),
-    get: (target, property) => builder(property)
-  })
+  return typeof Proxy === 'undefined' ? builder : new Proxy(builder, handler)
 }
 
 module.exports = namespace
