@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "Named Node builder",
   "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "standard && mocha"
   },
@@ -23,7 +24,8 @@
   },
   "homepage": "https://github.com/rdfjs-base/namespace",
   "dependencies": {
-    "@rdfjs/data-model": "^1.1.0"
+    "@rdfjs/data-model": "^1.1.0",
+    "@types/rdf-js": "^2.0.1"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
