@@ -10,9 +10,10 @@ interface Factory {
   namedNode(value: string): NamedNode;
 }
 
-export interface BuilderOptions {
+interface BuilderOptions {
   factory?: Factory;
 }
 
--declare function namespace(baseIRI: string, options?: BuilderOptions): NamespaceBuilder;
-+export = namespace
+declare function namespace(baseIRI: string, options?: BuilderOptions): NamespaceBuilder;
+
+export = namespace
