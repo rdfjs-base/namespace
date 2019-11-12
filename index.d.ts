@@ -14,4 +14,5 @@ export interface BuilderOptions {
   factory?: Factory;
 }
 
-export default function namespace(baseIRI: string, options?: BuilderOptions): NamespaceBuilder;
+-declare function namespace(baseIRI: string, options?: BuilderOptions): NamespaceBuilder;
++export = namespace
