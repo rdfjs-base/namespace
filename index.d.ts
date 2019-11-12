@@ -1,3 +1,4 @@
+import * as DataFactory from '@rdfjs/data-model';
 import { NamedNode } from 'rdf-js';
 
 interface NamespaceBuilder {
@@ -6,10 +7,8 @@ interface NamespaceBuilder {
   [property: string]: NamedNode;
 }
 
-import Factory = require('@rdfjs/data-model');
-
 interface BuilderOptions {
-  factory?: typeof Factory;
+  factory?: typeof DataFactory;
 }
 
 declare function namespace(baseIRI: string, options?: BuilderOptions): NamespaceBuilder;
