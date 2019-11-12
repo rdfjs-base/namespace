@@ -6,12 +6,10 @@ interface NamespaceBuilder {
   [property: string]: NamedNode;
 }
 
-interface Factory {
-  namedNode(value: string): NamedNode;
-}
+import Factory = require('@rdfjs/data-model');
 
 interface BuilderOptions {
-  factory?: Factory;
+  factory?: typeof Factory;
 }
 
 declare function namespace(baseIRI: string, options?: BuilderOptions): NamespaceBuilder;
