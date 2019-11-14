@@ -4,7 +4,7 @@ import { NamedNode } from 'rdf-js';
 interface NamespaceBuilder {
   (property: TemplateStringsArray): NamedNode;
   (property: string): NamedNode;
-  [property: string]: NamedNode;
+  readonly [property: string]: NamedNode;
 }
 
 interface BuilderOptions {
