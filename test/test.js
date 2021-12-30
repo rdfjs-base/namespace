@@ -1,28 +1,31 @@
-/* global describe, it */
-
-const assert = require('assert')
-const namespace = require('..')
+import { strictEqual } from 'assert'
+import { describe, it } from 'mocha'
+import namespace from '../index.js'
 
 describe('namespace', () => {
   it('should be a function', () => {
-    assert.strictEqual(typeof namespace, 'function')
+    strictEqual(typeof namespace, 'function')
   })
 
   it('should return a function', () => {
     const schema = namespace('http://schema.org/')
 
-    assert.strictEqual(typeof schema, 'function')
+    strictEqual(typeof schema, 'function')
   })
 
   it('should use the given factory to create Named Nodes', () => {
     let touched = false
 
-    const factory = { namedNode: () => { touched = true } }
+    const factory = {
+      namedNode: () => {
+        touched = true
+      }
+    }
     const schema = namespace('http://schema.org/', { factory })
 
     schema('hasPart')
 
-    assert(touched)
+    strictEqual(touched, true)
   })
 
   describe('function call', () => {
@@ -30,24 +33,24 @@ describe('namespace', () => {
       const schema = namespace('http://schema.org/')
       const term = schema('hasPart')
 
-      assert.strictEqual(term.termType, 'NamedNode')
-      assert.strictEqual(term.value, 'http://schema.org/hasPart')
+      strictEqual(term.termType, 'NamedNode')
+      strictEqual(term.value, 'http://schema.org/hasPart')
     })
 
     it('should create a Named Node based on the baseIRI with the empty string as parameter', () => {
       const schema = namespace('http://schema.org/')
       const term = schema('')
 
-      assert.strictEqual(term.termType, 'NamedNode')
-      assert.strictEqual(term.value, 'http://schema.org/')
+      strictEqual(term.termType, 'NamedNode')
+      strictEqual(term.value, 'http://schema.org/')
     })
 
     it('should create a Named Node based on the baseIRI without parameter', () => {
       const schema = namespace('http://schema.org/')
       const term = schema()
 
-      assert.strictEqual(term.termType, 'NamedNode')
-      assert.strictEqual(term.value, 'http://schema.org/')
+      strictEqual(term.termType, 'NamedNode')
+      strictEqual(term.value, 'http://schema.org/')
     })
   })
 
@@ -56,16 +59,16 @@ describe('namespace', () => {
       const schema = namespace('http://schema.org/')
       const term = schema`hasPart`
 
-      assert.strictEqual(term.termType, 'NamedNode')
-      assert.strictEqual(term.value, 'http://schema.org/hasPart')
+      strictEqual(term.termType, 'NamedNode')
+      strictEqual(term.value, 'http://schema.org/hasPart')
     })
 
     it('should create a Named Node based on the baseIRI and an empty template string', () => {
       const schema = namespace('http://schema.org/')
       const term = schema``
 
-      assert.strictEqual(term.termType, 'NamedNode')
-      assert.strictEqual(term.value, 'http://schema.org/')
+      strictEqual(term.termType, 'NamedNode')
+      strictEqual(term.value, 'http://schema.org/')
     })
   })
 
@@ -74,8 +77,8 @@ describe('namespace', () => {
       const schema = namespace('http://schema.org/')
       const term = schema.hasPart
 
-      assert.strictEqual(term.termType, 'NamedNode')
-      assert.strictEqual(term.value, 'http://schema.org/hasPart')
+      strictEqual(term.termType, 'NamedNode')
+      strictEqual(term.value, 'http://schema.org/hasPart')
     })
 
     it('should return undefined if the JavaScript engine doesn\'t support Proxy', () => {
@@ -88,7 +91,7 @@ describe('namespace', () => {
 
       global.Proxy = ProxyBackup
 
-      assert.strictEqual(typeof term, 'undefined')
+      strictEqual(typeof term, 'undefined')
     })
   })
 })

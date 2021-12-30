@@ -1,4 +1,4 @@
-const rdf = require('@rdfjs/data-model')
+import rdf from '@rdfjs/data-model'
 
 const handler = {
   apply: (target, thisArg, args) => target(args[0]),
@@ -11,4 +11,4 @@ function namespace (baseIRI, { factory = rdf } = {}) {
   return typeof Proxy === 'undefined' ? builder : new Proxy(builder, handler)
 }
 
-module.exports = namespace
+export default namespace

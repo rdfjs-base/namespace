@@ -1,8 +1,9 @@
 # @rdfjs/namespace
 
-[![Build Status](https://travis-ci.org/rdfjs/namespace.svg?branch=master)](https://travis-ci.org/rdfjs/namespace)
+[![Build Status](https://github.com/rdfjs-base/namespace/workflows/CI/badge.svg)](https://github.com/rdfjs-base/namespace/actions)
 
 [![npm version](https://img.shields.io/npm/v/@rdfjs/namespace.svg)](https://www.npmjs.com/package/@rdfjs/namespace)
+
 
 [Named Node](http://rdf.js.org/) builder.
 
@@ -42,7 +43,7 @@ This example shows how to create a builder and create Named Nodes using the thre
 The properties of the Named Nodes are written to the console.
 
 ```javascript
-const namespace = require('@rdfjs/namespace')
+import namespace from '@rdfjs/namespace'
 
 const schema = namespace('http://schema.org/')
 
