@@ -1,4 +1,5 @@
 # @rdfjs/namespace
+[![build status](https://img.shields.io/github/actions/workflow/status/rdfjs-base/namespace/test.yaml?branch=master)](https://github.com/rdfjs-base/namespace/actions/workflows/test.yaml)
 
 [![Build Status](https://github.com/rdfjs-base/namespace/workflows/CI/badge.svg)](https://github.com/rdfjs-base/namespace/actions)
 

@@ -1,4 +1,4 @@
-import namespace from '@rdfjs/namespace'
+import namespace from './index.js'
 
 class Factory {
   namespace (baseIRI) {
