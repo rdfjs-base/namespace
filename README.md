@@ -1,10 +1,6 @@
 # @rdfjs/namespace
 [![build status](https://img.shields.io/github/actions/workflow/status/rdfjs-base/namespace/test.yaml?branch=master)](https://github.com/rdfjs-base/namespace/actions/workflows/test.yaml)
-
-[![Build Status](https://github.com/rdfjs-base/namespace/workflows/CI/badge.svg)](https://github.com/rdfjs-base/namespace/actions)
-
 [![npm version](https://img.shields.io/npm/v/@rdfjs/namespace.svg)](https://www.npmjs.com/package/@rdfjs/namespace)
-
 
 [Named Node](http://rdf.js.org/) builder.
 
